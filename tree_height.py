@@ -3,7 +3,7 @@ import threading
 
 
 def computeheight(n, parents):
-    children = [[] for in range(n)]
+    children = [[] for  in range(n)]
     for i in range(n):
         parent = parents[i]
         if parent == -1:
@@ -39,7 +39,7 @@ def main():
             height = compute_height(n, parents)
             print(height)
     else:
-        print("Invalid")
+        print("Invalids")
         exit()
 
 
