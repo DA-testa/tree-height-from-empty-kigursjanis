@@ -9,7 +9,8 @@ def computeheight(n, parents):
         if parent == -1:
             root = i
         else:
-            children[parent].append(i)
+            
+children[parent].append(i)
  
     def compute_depth(node):
         if not children[node]:
