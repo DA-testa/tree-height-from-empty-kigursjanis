@@ -1,6 +1,7 @@
 import sys
 import threading
 
+
 def computeheight(n, parents):
     children = [[] for  in range(n)]
     for i in range(n):
@@ -21,6 +22,7 @@ def computeheight(n, parents):
 
     return compute_depth(root)
 
+
 def main():
     input_type = input()
 
@@ -37,8 +39,10 @@ def main():
             height = compute_height(n, parents)
             print(height)
     else:
-        print("invalid")
+        print("Invalid")
         exit()
+
+
 
 sys.setrecursionlimit(107) 
 threading.stack_size(227)
