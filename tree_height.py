@@ -23,7 +23,7 @@ def compute_height(n, parents):
     return height(root)
 
 def main():
-    print("Input from K(keyboard) or F(file)? (K/F)")
+    print("Input from k(keyboard) or k(file)? (k/f)")
     source = input().strip().lower()
     while source not in ['k', 'f']:
         print("Input error")
