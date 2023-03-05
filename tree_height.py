@@ -1,46 +1,45 @@
-# python3
-
 import sys
 import threading
 
+def computeheight(n, parents):
+    children = [[] for  in range(n)]
+    for i in range(n):
+        parent = parents[i]
+        if parent == -1:
+            root = i
+        else:
+            children[parent].append(i)
+ 
+    def compute_depth(node):
+        if not children[node]:
+            return 1
+        max_depth = 0
+        for child in children[node]:
+            depth = compute_depth(child)
+            max_depth = max(max_depth, depth)
+        return max_depth + 1
 
-def compute_height(n, parents):
-    def height(node):
-        if node not in cache:
-            if parents[node] == -1:
-                cache[node] = 1
-            else:
-                cache[node] = 1 + height(parents[node])
-        return cache[node]
-
-    cache = {}
-    return max(height(node) for node in range(len(parents)))
-    
-
+    return compute_depth(root)
 
 def main():
-    # newInput = input("Ievadiet 'I' ja vēlaties ievadīt no tastatūras un 'F', ja ieevade no faila:")
-    while True:
-        newInput = input().strip().upper()
-        if newInput == "I":
-            n = int(input())
-            parents = list(map(int,input().split()))
-            break
-        elif newInput == "F":
-            fileName = input()
-            if "a" in fileName:
-                return 1
-            try:
-                with open(fileName) as file:
-                    n = int(file.readline())
-                    parents = list(map(int, file.readline().split()))
-                    break
-            except FileNotFoundError:
-                return 1 
+    input_type = input()
 
-    height = compute_height(n , parents)
-    print(height)            
+    if 'I' in input_type:
+        n = int(input())
+        parents = list(map(int, input().split()))
+        height = compute_height(n, parents)
+        print(height)
+    elif 'F' in input_type:
+        filename = input()
+        with open("test/" + filename, 'r') as f:
+            n = int(f.readline())
+            parents = list(map(int, f.readline().split()))
+            height = compute_height(n, parents)
+            print(height)
+    else:
+        print("invalid")
+        exit()
 
-sys.setrecursionlimit(10**7)  # max depth of recursion
-threading.stack_size(2**27)   # new thread will get stack of such size
+sys.setrecursionlimit(107) 
+threading.stack_size(227)
 threading.Thread(target=main).start()
